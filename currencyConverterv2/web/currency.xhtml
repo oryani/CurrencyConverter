@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+       xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Currency Converter</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h3>Currency Converter</h3>
+            <!--  SEK 153, EUR 151 USD 152 CAD 154 in the database-->
+            <p>
+                <h:outputLabel for="fromC" value="From: "/>
+                <h:selectOneMenu id="fromC" value ="#{currencyManager.fromCurrency}" >
+                    <f:selectItem itemValue="153" itemLabel="SEK-Sweden" />
+                    <f:selectItem itemValue="151" itemLabel="EUR-Europe" />
+                    <f:selectItem itemValue="152" itemLabel="USD-USA" />
+                    <f:selectItem itemValue="154" itemLabel="CAD-Canada" />
+                   
+                </h:selectOneMenu>
+            </p>
+            <p>
+                <h:outputLabel for="toC" value="To: "/>
+                <h:selectOneMenu id="toC" value ="#{currencyManager.toCurrency}">
+                    <f:selectItem itemValue="153" itemLabel="SEK-Sweden" />
+                    <f:selectItem itemValue="151" itemLabel="EUR-Europe" />
+                    <f:selectItem itemValue="152" itemLabel="USD-USA" />
+                    <f:selectItem itemValue="154" itemLabel="CAD-Canada" />
+                   
+                </h:selectOneMenu>
+            </p>
+            <p>
+                <h:outputLabel for="fromCurrency" value="Amount: "/>
+                <h:inputText id="amount" value="#{currencyManager.amount}">
+                     <f:validateDoubleRange minimum="0.001" maximum="100000000000"/>
+                </h:inputText>
+            </p>
+            
+            <h:outputLabel for="output" value="Result: "/>
+            <h:outputText id="output" value="#{currencyManager.result}"/>
+            <p>
+                <h:commandButton value="Search" action="#{currencyManager.convertCurrency2}"/>
+            </p>
+            <hr/>
+         </h:form>
+    </h:body>
+</html>
